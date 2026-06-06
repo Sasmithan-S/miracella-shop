@@ -78,7 +78,7 @@ img { display: block; width: 100%; height: 100%; object-fit: cover; }
   width: auto;
   object-fit: contain;
   display: block;
-  filter: invert(38%) sepia(45%) saturate(600%) hue-rotate(10deg) brightness(0.75);
+  
 }
 .cart-icon {
   position: relative;
@@ -860,8 +860,8 @@ img { display: block; width: 100%; height: 100%; object-fit: cover; }
 .footer-logo img {
   height: 48px;
   margin: 0 auto;
-  filter: brightness(0) invert(1);
-  opacity: 0.8;
+  
+  opacity: 0.95;
   width: auto;
   object-fit: contain;
 }
