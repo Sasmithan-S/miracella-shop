@@ -144,7 +144,14 @@
       document.getElementById('productPrice').textContent = product.price + ' €';
       document.getElementById('productDesc').innerHTML = '<p>' + product.description + '</p>';
       document.getElementById('productMaterial').textContent = product.material;
-      document.getElementById('productStock').textContent = product.stock > 0 ? product.stock + ' pièces disponibles' : 'Rupture de stock';
+      const stockEl = document.getElementById('productStock');
+      if (!product.available) {
+        stockEl.textContent = 'Pas encore disponible';
+        stockEl.classList.add('out');
+      } else {
+        stockEl.textContent = product.stock > 0 ? product.stock + ' pièces disponibles' : 'Rupture de stock';
+        if (product.stock === 0) stockEl.classList.add('out');
+      }
       document.getElementById('detailsMatieres').innerHTML = '<p>' + product.material + '</p>';
 
       const mainImg = document.getElementById('mainImg');
@@ -176,12 +183,21 @@
         document.getElementById('sizeSection').style.display = 'none';
       }
 
-      document.getElementById('addToCartBtn').addEventListener('click', () => {
-        addToCart(product);
-        const toast = document.getElementById('toast');
-        toast.classList.add('show');
-        setTimeout(() => toast.classList.remove('show'), 2500);
-      });
+      const addBtn = document.getElementById('addToCartBtn');
+      if (!product.available) {
+        addBtn.textContent = 'Pas encore disponible';
+        addBtn.disabled = true;
+        addBtn.style.background = '#e0d8ce';
+        addBtn.style.color = '#8a8070';
+        addBtn.style.cursor = 'not-allowed';
+      } else {
+        addBtn.addEventListener('click', () => {
+          addToCart(product);
+          const toast = document.getElementById('toast');
+          toast.classList.add('show');
+          setTimeout(() => toast.classList.remove('show'), 2500);
+        });
+      }
     }
 
     renderProducts('related', 4, 'relatedGrid', id);

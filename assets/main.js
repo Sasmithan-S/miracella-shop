@@ -2,7 +2,9 @@
 //  MIRACELLA — main.js
 // ─────────────────────────────────────────────
 
-// PRODUITS
+// available: false = "Pas encore disponible" (collier, bracelet, boucle)
+// Les bagues sont disponibles
+
 const products = [
   {
     id: 1,
@@ -11,9 +13,10 @@ const products = [
     category: 'collier',
     price: 189,
     material: 'Or 18 carats, diamants 0.15 ct',
-    stock: 8,
+    stock: 0,
+    available: false,
     icon: '✦',
-    color: 'linear-gradient(135deg, #1a1a1a 0%, #2d2206 100%)',
+    color: 'linear-gradient(135deg, #f2ede6 0%, #e8ddd0 100%)',
     badge: null,
     description: 'Ce collier fin en or 18 carats est serti de diamants taille brillant soigneusement sélectionnés. Sa chaîne délicate et son pendentif géométrique en font une pièce intemporelle, aussi bien portée au quotidien que pour les grandes occasions.',
     sizes: null,
@@ -28,8 +31,9 @@ const products = [
     price: 245,
     material: 'Or blanc 18 carats, saphir bleu',
     stock: 5,
+    available: true,
     icon: '◈',
-    color: 'linear-gradient(135deg, #0d1520 0%, #1a2a40 100%)',
+    color: 'linear-gradient(135deg, #edf0f5 0%, #dce3ee 100%)',
     badge: 'Nouveauté',
     description: 'La Bague Étoile est une ode à la beauté nocturne. Sertie d\'un saphir bleu naturel entouré de diamants, elle capture la lumière comme une constellation. Disponible du 48 au 60.',
     sizes: ['48', '50', '52', '54', '56', '58', '60'],
@@ -43,9 +47,10 @@ const products = [
     category: 'bracelet',
     price: 165,
     material: 'Argent 925 rhodié, perles de nacre',
-    stock: 12,
+    stock: 0,
+    available: false,
     icon: '○',
-    color: 'linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%)',
+    color: 'linear-gradient(135deg, #f5f2ee 0%, #ede8e0 100%)',
     badge: null,
     description: 'Le Bracelet Céleste marie l\'argent rhodié à des perles de nacre naturelles, créant un effet lunaire subtil au poignet. Sa fermeture en or jaune 18 carats apporte une touche bicolore élégante.',
     sizes: ['S', 'M', 'L'],
@@ -59,10 +64,11 @@ const products = [
     category: 'boucle',
     price: 135,
     material: 'Or jaune 18 carats',
-    stock: 15,
+    stock: 0,
+    available: false,
     icon: '✧',
-    color: 'linear-gradient(135deg, #1a1200 0%, #3a2800 100%)',
-    badge: 'Best-seller',
+    color: 'linear-gradient(135deg, #f5f0e8 0%, #ede5d0 100%)',
+    badge: null,
     description: 'Les Boucles Soleil en or jaune 18 carats capturent la chaleur et la lumière dans leur forme géométrique rayonnante. Légères et confortables, elles illuminent n\'importe quel visage.',
     sizes: null,
     featured: true,
@@ -75,10 +81,11 @@ const products = [
     category: 'collier',
     price: 320,
     material: 'Or rose 18 carats, rubis 0.3 ct',
-    stock: 3,
+    stock: 0,
+    available: false,
     icon: '✦',
-    color: 'linear-gradient(135deg, #1a0a08 0%, #2d1510 100%)',
-    badge: 'Édition limitée',
+    color: 'linear-gradient(135deg, #f5ede8 0%, #eeddd5 100%)',
+    badge: 'Prochainement',
     description: 'Inspiré des couleurs de l\'aurore boréale, ce collier en or rose est rehaussé d\'un rubis naturel birman de 0.3 carats. Chaque pièce est numérotée et accompagnée d\'un certificat d\'authenticité.',
     sizes: null,
     featured: false,
@@ -92,8 +99,9 @@ const products = [
     price: 890,
     material: 'Or blanc 18 carats, diamant 0.5 ct',
     stock: 4,
+    available: true,
     icon: '◇',
-    color: 'linear-gradient(135deg, #0a0a12 0%, #1a1a28 100%)',
+    color: 'linear-gradient(135deg, #f0f0f5 0%, #e5e5ee 100%)',
     badge: null,
     description: 'Notre solitaire signature. Un diamant rond brillant de 0.5 carat, certifié GIA, serti sur une monture en or blanc 18 carats. La quintessence de l\'élégance intemporelle. Un bijou qui se transmet.',
     sizes: ['48', '50', '52', '54', '56', '58'],
@@ -107,10 +115,11 @@ const products = [
     category: 'bracelet',
     price: 215,
     material: 'Or blanc 18 carats, diamants 0.8 ct total',
-    stock: 6,
+    stock: 0,
+    available: false,
     icon: '⟡',
-    color: 'linear-gradient(135deg, #0a0a1a 0%, #141428 100%)',
-    badge: 'Nouveauté',
+    color: 'linear-gradient(135deg, #eef0f5 0%, #e0e5ee 100%)',
+    badge: 'Prochainement',
     description: 'Le Bracelet Rivière est un ruban de lumière qui épouse le poignet. Serti en ligne de diamants pour un total de 0.8 carat, il crée un effet continu éblouissant à chaque mouvement.',
     sizes: ['S/M', 'M/L'],
     featured: false,
@@ -123,10 +132,11 @@ const products = [
     category: 'boucle',
     price: 178,
     material: 'Or bicolore 18 carats, onyx noir',
-    stock: 9,
+    stock: 0,
+    available: false,
     icon: '◉',
-    color: 'linear-gradient(135deg, #0a0a0a 0%, #1a0f00 100%)',
-    badge: null,
+    color: 'linear-gradient(135deg, #f0ede8 0%, #e8e3dc 100%)',
+    badge: 'Prochainement',
     description: 'Les Boucles Éclipse jouent sur le contraste entre l\'or jaune et l\'onyx noir pour un effet saisissant. Leur forme circulaire évoque l\'éclipse solaire, symbole de dualité et d\'équilibre.',
     sizes: null,
     featured: false,
@@ -147,6 +157,7 @@ function saveCart(cart) {
 }
 
 function addToCart(product) {
+  if (!product.available) return;
   let cart = getCart();
   const existing = cart.find(i => i.id === product.id);
   if (existing) {
@@ -182,38 +193,49 @@ function renderProducts(mode, limit, containerId, excludeId) {
 
   if (limit > 0) list = list.slice(0, limit);
 
-  container.innerHTML = list.map(p => `
-    <article class="product-card" onclick="window.location='product.html?id=${p.id}'">
-      <div class="product-card-img" style="background:${p.color}">
-        <span class="product-card-icon">${p.icon}</span>
-        ${p.badge ? `<span class="product-badge">${p.badge}</span>` : ''}
-      </div>
-      <div class="product-card-info">
-        <span class="product-card-category">${p.category}</span>
-        <h3>${p.name}</h3>
-        <p class="product-card-tagline">${p.tagline}</p>
-        <div class="product-card-footer">
-          <span class="product-card-price">${p.price} €</span>
-          <button class="add-btn" onclick="event.stopPropagation(); addToCart(${JSON.stringify(p).replace(/"/g, '&quot;')}); showMiniToast()">+</button>
+  container.innerHTML = list.map(p => {
+    const unavail = !p.available;
+    const cardClass = unavail ? 'product-card unavailable' : 'product-card';
+    const clickHandler = unavail ? '' : `onclick="window.location='product.html?id=${p.id}'"`;
+    const badgeHtml = unavail
+      ? `<span class="unavailable-badge">Pas encore disponible</span>`
+      : (p.badge ? `<span class="product-badge">${p.badge}</span>` : '');
+    const priceClass = unavail ? 'product-card-price greyed' : 'product-card-price';
+    const actionHtml = unavail
+      ? `<span class="unavail-label">Bientôt</span>`
+      : `<button class="add-btn" onclick="event.stopPropagation(); addToCart(${JSON.stringify(p).replace(/"/g, '&quot;')}); showMiniToast()">+</button>`;
+
+    return `
+      <article class="${cardClass}" ${clickHandler}>
+        <div class="product-card-img" style="background:${p.color}">
+          <span class="product-card-icon">${p.icon}</span>
+          ${badgeHtml}
         </div>
-      </div>
-    </article>
-  `).join('');
+        <div class="product-card-info">
+          <span class="product-card-category">${p.category}</span>
+          <h3>${p.name}</h3>
+          <p class="product-card-tagline">${p.tagline}</p>
+          <div class="product-card-footer">
+            <span class="${priceClass}">${p.price} €</span>
+            ${actionHtml}
+          </div>
+        </div>
+      </article>
+    `;
+  }).join('');
 }
 
 function showMiniToast() {
-  const toast = document.getElementById('toast');
+  let toast = document.getElementById('toast');
   if (!toast) {
-    const t = document.createElement('div');
-    t.className = 'toast show';
-    t.id = 'toast';
-    t.textContent = '✓ Ajouté au panier';
-    document.body.appendChild(t);
-    setTimeout(() => t.classList.remove('show'), 2500);
-  } else {
-    toast.classList.add('show');
-    setTimeout(() => toast.classList.remove('show'), 2500);
+    toast = document.createElement('div');
+    toast.className = 'toast';
+    toast.id = 'toast';
+    toast.textContent = '✓ Ajouté au panier';
+    document.body.appendChild(toast);
   }
+  toast.classList.add('show');
+  setTimeout(() => toast.classList.remove('show'), 2500);
 }
 
 // ─── NAVBAR SCROLL ──────────────────────────────
