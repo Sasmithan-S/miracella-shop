@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Produit — MIRACELLA</title>
+  <link rel="stylesheet" href="assets/style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Montserrat:wght@200;300;400;500&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <header class="nav-bar" id="navbar">
+    <div class="nav-left">
+      <a href="collection.html">Collection</a>
+      <a href="collection.html">Nouveautés</a>
+    </div>
+    <a href="index.html" class="nav-logo-link">
+      <img src="assets/logo.png" alt="Miracella" class="nav-logo" />
+    </a>
+    <div class="nav-right">
+      <a href="#">À propos</a>
+      <a href="cart.html" class="cart-icon" id="cartLink">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+        <span class="cart-count" id="cartCount">0</span>
+      </a>
+    </div>
+  </header>
+
+  <!-- PRODUCT DETAIL -->
+  <section class="product-detail" id="productDetail">
+    <div class="breadcrumb" id="breadcrumb">
+      <a href="index.html">Accueil</a> <span>/</span>
+      <a href="collection.html">Collection</a> <span>/</span>
+      <span id="productBreadcrumb">Produit</span>
+    </div>
+
+    <div class="product-layout">
+      <!-- IMAGES -->
+      <div class="product-gallery">
+        <div class="product-img-main" id="mainImg"></div>
+        <div class="product-thumbs" id="thumbs"></div>
+      </div>
+
+      <!-- INFO -->
+      <div class="product-info">
+        <span class="product-category" id="productCategory"></span>
+        <h1 class="product-name" id="productName"></h1>
+        <p class="product-tagline" id="productTagline"></p>
+        <div class="product-price" id="productPrice"></div>
+
+        <div class="product-separator"></div>
+
+        <div class="product-desc" id="productDesc"></div>
+
+        <!-- TAILLE -->
+        <div class="product-options" id="sizeSection">
+          <p class="option-label">Taille</p>
+          <div class="size-options" id="sizeOptions"></div>
+        </div>
+
+        <!-- MATIÈRE -->
+        <div class="product-options">
+          <p class="option-label">Matière</p>
+          <p class="option-value" id="productMaterial"></p>
+        </div>
+
+        <!-- ADD TO CART -->
+        <button class="btn-gold full" id="addToCartBtn">Ajouter au panier</button>
+        <p class="product-stock" id="productStock"></p>
+
+        <div class="product-details-list">
+          <details>
+            <summary>Composition & matières</summary>
+            <div id="detailsMatieres"></div>
+          </details>
+          <details>
+            <summary>Livraison & retours</summary>
+            <p>Livraison offerte en France métropolitaine dès 80€ d'achat.<br/>Retours acceptés sous 14 jours dans leur emballage d'origine.</p>
+          </details>
+          <details>
+            <summary>Entretien du bijou</summary>
+            <p>Évitez le contact avec l'eau, les parfums et les produits cosmétiques. Conservez dans l'écrin fourni.</p>
+          </details>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRODUITS SIMILAIRES -->
+  <section class="related-section">
+    <div class="section-header">
+      <span class="section-tag">À découvrir</span>
+      <h2>Vous aimerez aussi</h2>
+    </div>
+    <div class="products-grid" id="relatedGrid"></div>
+  </section>
+
+  <!-- TOAST -->
+  <div class="toast" id="toast">✓ Ajouté au panier</div>
+
+  <footer class="footer">
+    <div class="footer-logo">
+      <img src="assets/logo.png" alt="Miracella" />
+    </div>
+    <div class="footer-links">
+      <div>
+        <h4>Collection</h4>
+        <a href="collection.html">Colliers</a>
+        <a href="collection.html">Bagues</a>
+        <a href="collection.html">Bracelets</a>
+        <a href="collection.html">Boucles d'oreilles</a>
+      </div>
+      <div>
+        <h4>Informations</h4>
+        <a href="#">À propos</a>
+        <a href="#">Livraison & retours</a>
+        <a href="#">Entretien des bijoux</a>
+        <a href="#">Contact</a>
+      </div>
+      <div>
+        <h4>Légal</h4>
+        <a href="#">CGV</a>
+        <a href="#">Mentions légales</a>
+        <a href="#">Politique de confidentialité</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 Miracella — Made in France. Tous droits réservés.</p>
+    </div>
+  </footer>
+
+  <script src="assets/main.js"></script>
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const id = parseInt(params.get('id'));
+    const product = products.find(p => p.id === id);
+
+    if (product) {
+      document.title = product.name + ' — MIRACELLA';
+      document.getElementById('productBreadcrumb').textContent = product.name;
+      document.getElementById('productCategory').textContent = product.category;
+      document.getElementById('productName').textContent = product.name;
+      document.getElementById('productTagline').textContent = product.tagline;
+      document.getElementById('productPrice').textContent = product.price + ' €';
+      document.getElementById('productDesc').innerHTML = '<p>' + product.description + '</p>';
+      document.getElementById('productMaterial').textContent = product.material;
+      document.getElementById('productStock').textContent = product.stock > 0 ? product.stock + ' pièces disponibles' : 'Rupture de stock';
+      document.getElementById('detailsMatieres').innerHTML = '<p>' + product.material + '</p>';
+
+      const mainImg = document.getElementById('mainImg');
+      mainImg.style.background = product.color;
+      mainImg.innerHTML = `<div class="product-img-jewel" style="font-size:5rem">${product.icon}</div>`;
+
+      const thumbs = document.getElementById('thumbs');
+      for (let i = 0; i < 3; i++) {
+        const t = document.createElement('div');
+        t.className = 'thumb' + (i === 0 ? ' active' : '');
+        t.style.background = product.color;
+        t.innerHTML = `<span>${product.icon}</span>`;
+        thumbs.appendChild(t);
+      }
+
+      if (product.sizes && product.sizes.length > 0) {
+        const sizeOpts = document.getElementById('sizeOptions');
+        product.sizes.forEach((s, i) => {
+          const btn = document.createElement('button');
+          btn.className = 'size-btn' + (i === 0 ? ' active' : '');
+          btn.textContent = s;
+          btn.addEventListener('click', () => {
+            document.querySelectorAll('.size-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+          });
+          sizeOpts.appendChild(btn);
+        });
+      } else {
+        document.getElementById('sizeSection').style.display = 'none';
+      }
+
+      document.getElementById('addToCartBtn').addEventListener('click', () => {
+        addToCart(product);
+        const toast = document.getElementById('toast');
+        toast.classList.add('show');
+        setTimeout(() => toast.classList.remove('show'), 2500);
+      });
+    }
+
+    renderProducts('related', 4, 'relatedGrid', id);
+  </script>
+</body>
+</html>
