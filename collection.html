@@ -2,50 +2,47 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>Collection — MIRACELLA</title>
   <link rel="stylesheet" href="assets/style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Montserrat:wght@200;300;400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet" />
 </head>
 <body>
 
-  <header class="nav-bar" id="navbar">
+  <header class="nav-bar scrolled" id="navbar">
     <div class="nav-left">
       <a href="collection.html" class="active">Collection</a>
-      <a href="collection.html">Nouveautés</a>
     </div>
     <a href="index.html" class="nav-logo-link">
       <img src="assets/logo.png" alt="Miracella" class="nav-logo" />
     </a>
     <div class="nav-right">
-      <a href="#">À propos</a>
       <a href="cart.html" class="cart-icon" id="cartLink">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
         <span class="cart-count" id="cartCount">0</span>
       </a>
     </div>
   </header>
 
-  <!-- PAGE HERO -->
   <section class="page-hero">
     <p class="hero-sub">Miracella</p>
     <h1>La Collection</h1>
     <p class="page-desc">Des bijoux intemporels, pensés pour l'élégance française au quotidien.</p>
   </section>
 
-  <!-- FILTERS -->
   <section class="filters-bar">
     <button class="filter-btn active" data-filter="all">Tout</button>
-    <button class="filter-btn" data-filter="collier">Colliers</button>
     <button class="filter-btn" data-filter="bague">Bagues</button>
+    <button class="filter-btn" data-filter="collier">Colliers</button>
     <button class="filter-btn" data-filter="bracelet">Bracelets</button>
-    <button class="filter-btn" data-filter="boucle">Boucles d'oreilles</button>
+    <button class="filter-btn" data-filter="boucle">Boucles</button>
   </section>
 
-  <!-- GRID -->
   <section class="collection-section">
     <div class="products-grid large" id="collectionGrid"></div>
   </section>
+
+  <div class="toast" id="toast">✓ Ajouté au panier</div>
 
   <footer class="footer">
     <div class="footer-logo">
@@ -54,40 +51,37 @@
     <div class="footer-links">
       <div>
         <h4>Collection</h4>
-        <a href="collection.html">Colliers</a>
         <a href="collection.html">Bagues</a>
+        <a href="collection.html">Colliers</a>
         <a href="collection.html">Bracelets</a>
         <a href="collection.html">Boucles d'oreilles</a>
       </div>
       <div>
-        <h4>Informations</h4>
+        <h4>Infos</h4>
         <a href="#">À propos</a>
-        <a href="#">Livraison & retours</a>
-        <a href="#">Entretien des bijoux</a>
+        <a href="#">Livraison</a>
         <a href="#">Contact</a>
       </div>
       <div>
         <h4>Légal</h4>
         <a href="#">CGV</a>
         <a href="#">Mentions légales</a>
-        <a href="#">Politique de confidentialité</a>
+        <a href="#">Confidentialité</a>
       </div>
     </div>
     <div class="footer-bottom">
-      <p>© 2025 Miracella — Made in France. Tous droits réservés.</p>
+      <p>© 2025 Miracella — Made in France</p>
     </div>
   </footer>
 
   <script src="assets/main.js"></script>
   <script>
     renderProducts('all', 0, 'collectionGrid');
-
     document.querySelectorAll('.filter-btn').forEach(btn => {
       btn.addEventListener('click', () => {
         document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
-        const filter = btn.dataset.filter;
-        renderProducts(filter, 0, 'collectionGrid');
+        renderProducts(btn.dataset.filter, 0, 'collectionGrid');
       });
     });
   </script>

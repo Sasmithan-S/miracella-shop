@@ -2,25 +2,23 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>Panier — MIRACELLA</title>
   <link rel="stylesheet" href="assets/style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Montserrat:wght@200;300;400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet" />
 </head>
 <body>
 
-  <header class="nav-bar" id="navbar">
+  <header class="nav-bar scrolled" id="navbar">
     <div class="nav-left">
       <a href="collection.html">Collection</a>
-      <a href="collection.html">Nouveautés</a>
     </div>
     <a href="index.html" class="nav-logo-link">
       <img src="assets/logo.png" alt="Miracella" class="nav-logo" />
     </a>
     <div class="nav-right">
-      <a href="#">À propos</a>
       <a href="cart.html" class="cart-icon active" id="cartLink">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
         <span class="cart-count" id="cartCount">0</span>
       </a>
     </div>
@@ -28,18 +26,14 @@
 
   <section class="cart-page">
     <div class="cart-header">
-      <h1>Votre panier</h1>
+      <h1>Mon panier</h1>
       <a href="collection.html" class="back-link">← Continuer mes achats</a>
     </div>
-
-    <div class="cart-layout" id="cartLayout">
-      <!-- Rempli par JS -->
-    </div>
-
+    <div class="cart-layout" id="cartLayout"></div>
     <div class="cart-empty" id="cartEmpty" style="display:none">
       <div class="cart-empty-icon">◇</div>
       <h2>Votre panier est vide</h2>
-      <p>Découvrez notre collection de bijoux Made in France.</p>
+      <p>Découvrez nos bijoux Made in France.</p>
       <a href="collection.html" class="btn-gold">Explorer la collection</a>
     </div>
   </section>
@@ -51,28 +45,21 @@
     <div class="footer-links">
       <div>
         <h4>Collection</h4>
-        <a href="collection.html">Colliers</a>
         <a href="collection.html">Bagues</a>
-        <a href="collection.html">Bracelets</a>
-        <a href="collection.html">Boucles d'oreilles</a>
+        <a href="collection.html">Colliers</a>
       </div>
       <div>
-        <h4>Informations</h4>
-        <a href="#">À propos</a>
-        <a href="#">Livraison & retours</a>
-        <a href="#">Entretien des bijoux</a>
+        <h4>Infos</h4>
+        <a href="#">Livraison</a>
         <a href="#">Contact</a>
       </div>
       <div>
         <h4>Légal</h4>
         <a href="#">CGV</a>
-        <a href="#">Mentions légales</a>
-        <a href="#">Politique de confidentialité</a>
+        <a href="#">Confidentialité</a>
       </div>
     </div>
-    <div class="footer-bottom">
-      <p>© 2025 Miracella — Made in France. Tous droits réservés.</p>
-    </div>
+    <div class="footer-bottom"><p>© 2025 Miracella — Made in France</p></div>
   </footer>
 
   <script src="assets/main.js"></script>
@@ -81,50 +68,45 @@
       const cart = getCart();
       const layout = document.getElementById('cartLayout');
       const empty = document.getElementById('cartEmpty');
-
       if (cart.length === 0) {
         layout.style.display = 'none';
         empty.style.display = 'flex';
         return;
       }
-
-      layout.style.display = 'grid';
+      layout.style.display = 'flex';
       empty.style.display = 'none';
 
-      const subtotal = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
+      const subtotal = cart.reduce((s, i) => s + i.price * i.qty, 0);
       const shipping = subtotal >= 80 ? 0 : 4.90;
       const total = subtotal + shipping;
 
       layout.innerHTML = `
         <div class="cart-items">
           ${cart.map(item => `
-            <div class="cart-item" data-id="${item.id}">
-              <div class="cart-item-img" style="background:${item.color}">
-                <span style="font-size:2rem">${item.icon}</span>
+            <div class="cart-item">
+              <div class="cart-item-img">
+                <img src="${item.image}" alt="${item.name}" />
               </div>
               <div class="cart-item-info">
                 <span class="cart-item-category">${item.category}</span>
                 <h3>${item.name}</h3>
                 <p class="cart-item-material">${item.material}</p>
-                <div class="cart-item-actions">
+                <div class="cart-item-row">
                   <div class="qty-control">
                     <button onclick="changeQty(${item.id}, -1)">−</button>
                     <span>${item.qty}</span>
                     <button onclick="changeQty(${item.id}, 1)">+</button>
                   </div>
-                  <button class="remove-btn" onclick="removeFromCart(${item.id})">Supprimer</button>
+                  <span class="cart-item-price">${(item.price * item.qty).toFixed(2)} €</span>
+                  <button class="remove-btn" onclick="removeFromCart(${item.id})">Retirer</button>
                 </div>
               </div>
-              <div class="cart-item-price">${(item.price * item.qty).toFixed(2)} €</div>
             </div>
           `).join('')}
         </div>
         <div class="cart-summary">
           <h3>Récapitulatif</h3>
-          <div class="summary-line">
-            <span>Sous-total</span>
-            <span>${subtotal.toFixed(2)} €</span>
-          </div>
+          <div class="summary-line"><span>Sous-total</span><span>${subtotal.toFixed(2)} €</span></div>
           <div class="summary-line">
             <span>Livraison</span>
             <span>${shipping === 0 ? '<span class="free">Offerte</span>' : shipping.toFixed(2) + ' €'}</span>
@@ -134,10 +116,10 @@
             <span>Total</span>
             <span>${total.toFixed(2)} €</span>
           </div>
-          <button class="btn-gold full checkout-btn" onclick="alert('Paiement non disponible en démo')">
+          <button class="btn-gold checkout-btn" onclick="alert('Paiement non disponible en démo.')">
             Passer commande
           </button>
-          <p class="secure-note">🔒 Paiement sécurisé — SSL</p>
+          <p class="secure-note">🔒 Paiement sécurisé</p>
           <div class="payment-icons">
             <span>Visa</span><span>Mastercard</span><span>PayPal</span>
           </div>
@@ -156,15 +138,12 @@
         renderCart();
       }
     }
-
     function removeFromCart(id) {
-      let cart = getCart();
-      cart = cart.filter(i => i.id !== id);
+      let cart = getCart().filter(i => i.id !== id);
       saveCart(cart);
       updateCartCount();
       renderCart();
     }
-
     renderCart();
   </script>
 </body>

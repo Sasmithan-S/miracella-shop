@@ -2,49 +2,52 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>Produit — MIRACELLA</title>
   <link rel="stylesheet" href="assets/style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Montserrat:wght@200;300;400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet" />
 </head>
 <body>
 
-  <header class="nav-bar" id="navbar">
+  <header class="nav-bar scrolled" id="navbar">
     <div class="nav-left">
       <a href="collection.html">Collection</a>
-      <a href="collection.html">Nouveautés</a>
     </div>
     <a href="index.html" class="nav-logo-link">
       <img src="assets/logo.png" alt="Miracella" class="nav-logo" />
     </a>
     <div class="nav-right">
-      <a href="#">À propos</a>
       <a href="cart.html" class="cart-icon" id="cartLink">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
         <span class="cart-count" id="cartCount">0</span>
       </a>
     </div>
   </header>
 
-  <!-- PRODUCT DETAIL -->
   <section class="product-detail" id="productDetail">
-    <div class="breadcrumb" id="breadcrumb">
-      <a href="index.html">Accueil</a> <span>/</span>
-      <a href="collection.html">Collection</a> <span>/</span>
+    <div class="breadcrumb">
+      <a href="index.html">Accueil</a>
+      <span>/</span>
+      <a href="collection.html">Collection</a>
+      <span>/</span>
       <span id="productBreadcrumb">Produit</span>
     </div>
 
     <div class="product-layout">
-      <!-- IMAGES -->
+      <!-- GALERIE -->
       <div class="product-gallery">
-        <div class="product-img-main" id="mainImg"></div>
+        <div class="product-img-main" id="mainImg">
+          <img src="" alt="" id="mainImgEl" />
+        </div>
         <div class="product-thumbs" id="thumbs"></div>
       </div>
 
       <!-- INFO -->
       <div class="product-info">
         <span class="product-category" id="productCategory"></span>
-        <h1 class="product-name" id="productName"></h1>
+        <div class="product-info-top">
+          <h1 class="product-name" id="productName"></h1>
+        </div>
         <p class="product-tagline" id="productTagline"></p>
         <div class="product-price" id="productPrice"></div>
 
@@ -52,41 +55,39 @@
 
         <div class="product-desc" id="productDesc"></div>
 
+        <!-- CHIPS -->
+        <div class="product-detail-chips" id="productChips"></div>
+
         <!-- TAILLE -->
-        <div class="product-options" id="sizeSection">
-          <p class="option-label">Taille</p>
+        <div class="size-section" id="sizeSection" style="display:none">
+          <span class="option-label">Taille</span>
           <div class="size-options" id="sizeOptions"></div>
         </div>
 
-        <!-- MATIÈRE -->
-        <div class="product-options">
-          <p class="option-label">Matière</p>
-          <p class="option-value" id="productMaterial"></p>
-        </div>
-
-        <!-- ADD TO CART -->
-        <button class="btn-gold full" id="addToCartBtn">Ajouter au panier</button>
+        <!-- CTA -->
+        <button class="btn-gold" id="addToCartBtn">Ajouter au panier</button>
         <p class="product-stock" id="productStock"></p>
 
-        <div class="product-details-list">
+        <!-- ACCORDION -->
+        <div class="accordion">
           <details>
             <summary>Composition & matières</summary>
-            <div id="detailsMatieres"></div>
+            <p id="detailsMatieres"></p>
           </details>
           <details>
             <summary>Livraison & retours</summary>
-            <p>Livraison offerte en France métropolitaine dès 80€ d'achat.<br/>Retours acceptés sous 14 jours dans leur emballage d'origine.</p>
+            <p>Livraison offerte dès 80€ en France métropolitaine. Retours acceptés sous 14 jours dans leur emballage d'origine.</p>
           </details>
           <details>
             <summary>Entretien du bijou</summary>
-            <p>Évitez le contact avec l'eau, les parfums et les produits cosmétiques. Conservez dans l'écrin fourni.</p>
+            <p>Évitez le contact avec l'eau, les parfums et les produits cosmétiques. Conservez dans l'écrin Miracella fourni.</p>
           </details>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- PRODUITS SIMILAIRES -->
+  <!-- SIMILAIRES -->
   <section class="related-section">
     <div class="section-header">
       <span class="section-tag">À découvrir</span>
@@ -95,7 +96,6 @@
     <div class="products-grid" id="relatedGrid"></div>
   </section>
 
-  <!-- TOAST -->
   <div class="toast" id="toast">✓ Ajouté au panier</div>
 
   <footer class="footer">
@@ -105,27 +105,26 @@
     <div class="footer-links">
       <div>
         <h4>Collection</h4>
-        <a href="collection.html">Colliers</a>
         <a href="collection.html">Bagues</a>
+        <a href="collection.html">Colliers</a>
         <a href="collection.html">Bracelets</a>
         <a href="collection.html">Boucles d'oreilles</a>
       </div>
       <div>
-        <h4>Informations</h4>
+        <h4>Infos</h4>
         <a href="#">À propos</a>
-        <a href="#">Livraison & retours</a>
-        <a href="#">Entretien des bijoux</a>
+        <a href="#">Livraison</a>
         <a href="#">Contact</a>
       </div>
       <div>
         <h4>Légal</h4>
         <a href="#">CGV</a>
         <a href="#">Mentions légales</a>
-        <a href="#">Politique de confidentialité</a>
+        <a href="#">Confidentialité</a>
       </div>
     </div>
     <div class="footer-bottom">
-      <p>© 2025 Miracella — Made in France. Tous droits réservés.</p>
+      <p>© 2025 Miracella — Made in France</p>
     </div>
   </footer>
 
@@ -143,31 +142,57 @@
       document.getElementById('productTagline').textContent = product.tagline;
       document.getElementById('productPrice').textContent = product.price + ' €';
       document.getElementById('productDesc').innerHTML = '<p>' + product.description + '</p>';
-      document.getElementById('productMaterial').textContent = product.material;
+      document.getElementById('detailsMatieres').textContent = product.material;
+
+      // Image principale
+      const mainImgEl = document.getElementById('mainImgEl');
+      mainImgEl.src = product.image;
+      mainImgEl.alt = product.name;
+
+      // Thumbs (même image x3 pour la démo)
+      const thumbsEl = document.getElementById('thumbs');
+      for (let i = 0; i < 3; i++) {
+        const t = document.createElement('div');
+        t.className = 'thumb' + (i === 0 ? ' active' : '');
+        const img = document.createElement('img');
+        img.src = product.image;
+        img.alt = product.name;
+        t.appendChild(img);
+        t.addEventListener('click', () => {
+          document.querySelectorAll('.thumb').forEach(b => b.classList.remove('active'));
+          t.classList.add('active');
+        });
+        thumbsEl.appendChild(t);
+      }
+
+      // Chips détails
+      if (product.details) {
+        const chips = document.getElementById('productChips');
+        product.details.forEach(d => {
+          const span = document.createElement('span');
+          span.className = 'chip';
+          span.textContent = d;
+          chips.appendChild(span);
+        });
+      }
+
+      // Stock / dispo
       const stockEl = document.getElementById('productStock');
       if (!product.available) {
         stockEl.textContent = 'Pas encore disponible';
         stockEl.classList.add('out');
+      } else if (product.stock <= 3) {
+        stockEl.textContent = 'Plus que ' + product.stock + ' en stock !';
+        stockEl.style.color = '#c0392b';
       } else {
-        stockEl.textContent = product.stock > 0 ? product.stock + ' pièces disponibles' : 'Rupture de stock';
-        if (product.stock === 0) stockEl.classList.add('out');
-      }
-      document.getElementById('detailsMatieres').innerHTML = '<p>' + product.material + '</p>';
-
-      const mainImg = document.getElementById('mainImg');
-      mainImg.style.background = product.color;
-      mainImg.innerHTML = `<div class="product-img-jewel" style="font-size:5rem">${product.icon}</div>`;
-
-      const thumbs = document.getElementById('thumbs');
-      for (let i = 0; i < 3; i++) {
-        const t = document.createElement('div');
-        t.className = 'thumb' + (i === 0 ? ' active' : '');
-        t.style.background = product.color;
-        t.innerHTML = `<span>${product.icon}</span>`;
-        thumbs.appendChild(t);
+        stockEl.textContent = 'En stock — livraison sous 48h';
+        stockEl.style.color = '#6aaa6a';
       }
 
+      // Tailles
       if (product.sizes && product.sizes.length > 0) {
+        const ss = document.getElementById('sizeSection');
+        ss.style.display = 'block';
         const sizeOpts = document.getElementById('sizeOptions');
         product.sizes.forEach((s, i) => {
           const btn = document.createElement('button');
@@ -179,17 +204,13 @@
           });
           sizeOpts.appendChild(btn);
         });
-      } else {
-        document.getElementById('sizeSection').style.display = 'none';
       }
 
+      // Bouton CTA
       const addBtn = document.getElementById('addToCartBtn');
       if (!product.available) {
         addBtn.textContent = 'Pas encore disponible';
         addBtn.disabled = true;
-        addBtn.style.background = '#e0d8ce';
-        addBtn.style.color = '#8a8070';
-        addBtn.style.cursor = 'not-allowed';
       } else {
         addBtn.addEventListener('click', () => {
           addToCart(product);
