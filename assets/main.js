@@ -9,6 +9,7 @@ const products = [
     tagline: 'Ton initiale, portée avec élégance',
     category: 'bague',
     price: 49,
+    originalPrice: 89,
     material: 'Acier inoxydable doré, zircon blanc',
     stock: 15,
     available: true,
@@ -26,6 +27,7 @@ const products = [
     tagline: 'Une lettre, mille souvenirs',
     category: 'bague',
     price: 49,
+    originalPrice: 89,
     material: 'Acier inoxydable doré, zircon blanc',
     stock: 12,
     available: true,
@@ -43,6 +45,7 @@ const products = [
     tagline: 'L\'éclat intemporel du diamant',
     category: 'bague',
     price: 55,
+    originalPrice: 99,
     material: 'Acier inoxydable argenté, zircon 5mm',
     stock: 10,
     available: true,
@@ -60,6 +63,7 @@ const products = [
     tagline: 'La dualité en un seul bijou',
     category: 'bague',
     price: 45,
+    originalPrice: 85,
     material: 'Acier inoxydable doré, zircon, perle dorée',
     stock: 18,
     available: true,
@@ -77,6 +81,7 @@ const products = [
     tagline: 'La même âme, dans une touche argentée',
     category: 'bague',
     price: 49,
+    originalPrice: 89,
     material: 'Acier inoxydable argenté, zircon blanc',
     stock: 14,
     available: true,
@@ -94,6 +99,7 @@ const products = [
     tagline: 'Légère comme un battement d\'ailes',
     category: 'bague',
     price: 52,
+    originalPrice: 95,
     material: 'Acier inoxydable doré, zircons pavés',
     stock: 9,
     available: true,
@@ -111,6 +117,7 @@ const products = [
     tagline: 'Deux cœurs, une seule bague',
     category: 'bague',
     price: 48,
+    originalPrice: 88,
     material: 'Acier inoxydable doré, zircons pavés',
     stock: 11,
     available: true,
@@ -128,6 +135,7 @@ const products = [
     tagline: 'La nature sublimée par l\'or',
     category: 'bague',
     price: 54,
+    originalPrice: 95,
     material: 'Acier inoxydable doré, zircons pavés',
     stock: 7,
     available: true,
@@ -145,6 +153,7 @@ const products = [
     tagline: 'Gravée dans l\'or, portée pour toujours',
     category: 'bague',
     price: 49,
+    originalPrice: 89,
     material: 'Acier inoxydable doré, zircon blanc',
     stock: 13,
     available: true,
@@ -219,7 +228,7 @@ function renderProducts(mode, limit, containerId, excludeId) {
           <h3>${p.name}</h3>
           <p class="product-card-tagline">${p.tagline}</p>
           <div class="product-card-footer">
-            <span class="product-card-price${unavail ? ' greyed' : ''}">${p.price} €</span>
+            ${unavail ? `<span class="product-card-price greyed">${p.price} €</span>` : priceHTML(p, false)}
             ${actionHtml}
           </div>
         </div>
@@ -248,3 +257,23 @@ window.addEventListener('scroll', () => {
 });
 
 document.addEventListener('DOMContentLoaded', () => { updateCartCount(); });
+
+
+// helper — bloc prix promo HTML
+function priceHTML(p, large) {
+  const pct = Math.round((1 - p.price / p.originalPrice) * 100);
+  if (large) {
+    return `
+      <div class="price-block large">
+        <span class="price-promo">${p.price} €</span>
+        <span class="price-original">${p.originalPrice} €</span>
+        <span class="price-badge">-${pct}%</span>
+      </div>`;
+  }
+  return `
+    <div class="price-block">
+      <span class="price-promo">${p.price} €</span>
+      <span class="price-original">${p.originalPrice} €</span>
+      <span class="price-badge">-${pct}%</span>
+    </div>`;
+}

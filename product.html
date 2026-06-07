@@ -140,7 +140,7 @@
       document.getElementById('productCategory').textContent = product.category;
       document.getElementById('productName').textContent = product.name;
       document.getElementById('productTagline').textContent = product.tagline;
-      document.getElementById('productPrice').textContent = product.price + ' €';
+      document.getElementById('productPrice').innerHTML = priceHTML(product, true);
       document.getElementById('productDesc').innerHTML = '<p>' + product.description + '</p>';
       document.getElementById('detailsMatieres').textContent = product.material;
 
